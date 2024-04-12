@@ -54,6 +54,9 @@ module.exports = {
     'no-nested-ternary': 'off',
     'no-use-before-define': 'off',
     'arrow-body-style': 'off',
+    'unicorn/no-array-reduce': 'off',
+    'unicorn/numeric-separators-style': 'off',
+    'unicorn/no-array-for-each': 'off',
   },
   overrides: [
     {

@@ -1,32 +1,30 @@
 import React, { useEffect } from 'react'
-import { Text, View } from 'react-native'
+import { Text } from 'react-native'
 import { FileLogger } from 'react-native-file-logger'
+
+import { IProductType } from 'src/types/product-types'
+
+import { API_END_POINT } from '@constants'
 
 const Product = () => {
   FileLogger.warn('Sample warning')
   FileLogger.debug('Sample debug log')
 
-  const fetchProductData = () => {
-    fetch('https://dummyjson.com/products/1')
-      .then(res => {
-        FileLogger.info('API call pending...')
-        return res.json()
-      })
-      .then(data => FileLogger.info(`API call successfull\nProduct Data : ${JSON.stringify(data)}`))
-      .catch(error => FileLogger.error(`API call error : ${error}`))
+  const fetchProductData = async () => {
+    try {
+      FileLogger.info('API call pending...')
+      const res = await fetch(API_END_POINT)
+      const data = (await res.json()) as IProductType
+      FileLogger.info(`API call successfull\nProduct Data : ${JSON.stringify(data)}`)
+    } catch (error) {
+      FileLogger.error(`API call error : ${JSON.stringify(error)}`)
+    }
   }
-
   useEffect(() => {
-    FileLogger.info('Product Component mounted')
-    fetchProductData()
-    return () => FileLogger.info('Product Component unmounted')
+    fetchProductData().catch(error => FileLogger.error(`Error in fetching Product Data: ${error}`))
   }, [])
 
-  return (
-    <View>
-      <Text>Products</Text>
-    </View>
-  )
+  return <Text>Products</Text>
 }
 
 export default Product
