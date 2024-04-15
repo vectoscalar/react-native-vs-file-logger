@@ -57,6 +57,7 @@ module.exports = {
     'unicorn/no-array-reduce': 'off',
     'unicorn/numeric-separators-style': 'off',
     'unicorn/no-array-for-each': 'off',
+    'react/jsx-props-no-spreading': 'off',
   },
   overrides: [
     {

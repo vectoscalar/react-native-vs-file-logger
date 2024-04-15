@@ -4,6 +4,7 @@ import { FileLogger } from 'react-native-file-logger'
 
 import { Product } from '@components'
 
+import { styles } from './app-styles'
 import { configureFileLogger } from './fileLogger'
 
 const App = () => {
@@ -12,7 +13,7 @@ const App = () => {
   }, [])
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <Product />
     </SafeAreaView>
   )
