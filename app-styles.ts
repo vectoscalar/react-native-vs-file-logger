@@ -1,7 +1,13 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, ViewStyle } from 'react-native'
 
-export const styles = StyleSheet.create({
+import { Spacing } from '@theme'
+
+interface IStyles {
+  container: ViewStyle
+}
+
+export const styles: IStyles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: Spacing.space_1,
   },
 })

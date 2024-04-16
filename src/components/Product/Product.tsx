@@ -56,9 +56,10 @@ const Product = () => {
       </>
     ) : (
       <>
-        {productData.length > 0 && <Text> Log Directory Path : {LOG_DIRECTORY_PATH}</Text>}
+        {productData.length > 0 && (
+          <Text style={styles.directoryPath}> Log Directory Path : {LOG_DIRECTORY_PATH}</Text>
+        )}
         <FlatList
-          contentContainerStyle={styles.listContainer}
           data={productData}
           renderItem={({ item }) => <ProductCard {...item} />}
           keyExtractor={item => item.title}
@@ -71,7 +72,7 @@ const Product = () => {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={fetchProductData} style={styles.button}>
-        <Text style={styles.label}>Fetch Product Data</Text>
+        <Text style={styles.label}>Fetch Products Data</Text>
       </TouchableOpacity>
       <View style={styles.subContainer}>{renderProductList()}</View>
     </View>

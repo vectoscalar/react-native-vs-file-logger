@@ -7,10 +7,11 @@ import { styles } from './productCard-styles'
 
 const ProductCard = (props: IProductCardProps) => {
   const { title, price } = props
+
   return (
     <View style={styles.container}>
-      <Text>{title}</Text>
-      <Text>{price}</Text>
+      <Text>Product : {title}</Text>
+      <Text>Price : ${price}</Text>
     </View>
   )
 }

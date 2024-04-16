@@ -1,11 +1,15 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, ViewStyle } from 'react-native'
 
 import { AppColors, Spacing } from '@theme'
 
-export const styles = StyleSheet.create({
+interface IStyles {
+  container: ViewStyle
+}
+
+export const styles: IStyles = StyleSheet.create({
   container: {
-    borderColor: AppColors.primary,
-    borderWidth: Spacing.space_1,
-    padding: Spacing.space_4,
+    borderBottomColor: AppColors.primary,
+    borderBottomWidth: Spacing.space_1,
+    padding: Spacing.space_8,
   },
 })
