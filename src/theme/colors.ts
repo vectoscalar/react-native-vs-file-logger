@@ -1,8 +1,11 @@
 import { palette } from './palette'
 
 const colors = {
-  primary: palette.black,
-  secondary: palette.white,
+  dark: palette.dark,
+  light: palette.white,
+  primary: palette.blue,
+  success: palette.green,
+  danger: palette.red,
 }
 
 export const AppColors = colors

@@ -1,4 +1,4 @@
-export interface IProductType {
+export interface IProductDataType {
   id: number
   title: string
   description: string

@@ -11,5 +11,3 @@ export const LOG_FILE_MAX_SIZE: number = 1024 * 1024
 export const MAX_LOG_FILES: number = 3
 
 export const API_END_POINT: string = 'https://dummyjson.com/products?limit=100'
-
-export const API_CALL_LIMIT: number = 40

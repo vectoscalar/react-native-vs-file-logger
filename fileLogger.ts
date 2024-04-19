@@ -12,6 +12,6 @@ export const configureFileLogger = async () => {
 
     FileLogger.info(`FileLogger configured successfully`)
   } catch (error) {
-    console.error(`FileLogger configure Error : ${JSON.stringify(error)}`)
+    console.error(`FileLogger configure error : ${JSON.stringify(error)}`)
   }
 }
