@@ -6,7 +6,7 @@ export const LOG_DIRECTORY_PATH: string =
     ? `${RNFS.ExternalDirectoryPath}/logs`
     : `${RNFS.DocumentDirectoryPath}/logs`
 
-export const LOG_FILE_MAX_SIZE: number = 1024 * 1024
+export const LOG_FILE_MAX_SIZE: number = 1024 * 1024 // 1MB
 
 export const MAX_LOG_FILES: number = 3
 

@@ -23,7 +23,7 @@ export const styles: IStyles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   button: {
-    backgroundColor: AppColors.primary['100'],
+    backgroundColor: AppColors.dark['50'],
     borderRadius: Spacing.space_4,
     marginHorizontal: Spacing.space_8,
     padding: Spacing.space_8,

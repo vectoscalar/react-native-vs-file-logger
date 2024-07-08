@@ -1,11 +1,13 @@
 import React from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
 import { FileLogger } from 'react-native-file-logger'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 
 import { Screens } from '@constants'
+import { Spacing } from '@theme'
 import { StackNavigatorParamList } from '@types'
 import { shareFiles } from '@utils'
 
@@ -42,10 +44,10 @@ const LogCard = (props: ILogCardProps) => {
       </TouchableOpacity>
       <View style={styles.subContainer}>
         <TouchableOpacity style={styles.button} onPress={() => deleteFileHandler(filePath)}>
-          <Text style={styles.label}>delete</Text>
+          <Icon name="delete" size={Spacing.space_20} />
         </TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={fileShareHandler}>
-          <Text style={styles.label}>Share</Text>
+          <Icon name="share" size={Spacing.space_20} />
         </TouchableOpacity>
       </View>
     </View>
