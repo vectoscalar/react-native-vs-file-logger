@@ -14,40 +14,41 @@ import { shareFiles } from '@utils'
 import { styles } from './logCard-styles'
 
 interface ILogCardProps {
+  fileData: string
   fileName: string
   filePath: string
-  fileData: string
-  deleteFileHandler: (filePath: string) => void
+  handleFileDelete: (filePath: string) => () => void
 }
 
 const LogCard = (props: ILogCardProps) => {
-  const { fileName, filePath, fileData, deleteFileHandler } = props
+  const { fileData, fileName, filePath, handleFileDelete } = props
   const navigation = useNavigation<NativeStackNavigationProp<StackNavigatorParamList>>()
 
-  const fileShareHandler = () => {
+  const handleFileShare = () => {
     shareFiles(filePath).catch(error => {
       FileLogger.error(`Error in sharing file : ${error}`)
+    })
+  }
+  
+  const handleNavigation = () => {
+    navigation.navigate(Screens.LogDetails, {
+      fileName,
+      fileData,
+      filePath,
     })
   }
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity
-        onPress={() =>
-          navigation.navigate(Screens.LogDetails, {
-            fileName,
-            fileData,
-            filePath,
-          })
-        }>
+      <TouchableOpacity onPress={handleNavigation}>
         <Text>{fileName}</Text>
       </TouchableOpacity>
       <View style={styles.subContainer}>
-        <TouchableOpacity style={styles.button} onPress={() => deleteFileHandler(filePath)}>
-          <Icon name="delete" size={Spacing.space_20} />
+        <TouchableOpacity style={styles.button} onPress={handleFileDelete(filePath)}>
+          <Icon name="delete" size={Spacing.space_24} />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={fileShareHandler}>
-          <Icon name="share" size={Spacing.space_20} />
+        <TouchableOpacity style={styles.button} onPress={handleFileShare}>
+          <Icon name="share" size={Spacing.space_24} />
         </TouchableOpacity>
       </View>
     </View>

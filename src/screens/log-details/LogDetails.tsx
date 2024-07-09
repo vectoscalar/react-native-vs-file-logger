@@ -7,13 +7,13 @@ import { RouteProp, useNavigation, useRoute } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 
 import { Spacing } from '@theme'
-import { ILogFileDataType, StackNavigatorParamList } from '@types'
+import { ILogFileData, StackNavigatorParamList } from '@types'
 import { shareFiles } from '@utils'
 
 import { styles } from './logDetails-styles'
 
 const LogDetails = () => {
-  const route = useRoute<RouteProp<{ params: ILogFileDataType }, 'params'>>()
+  const route = useRoute<RouteProp<{ params: ILogFileData }, 'params'>>()
   const navigation = useNavigation<NativeStackNavigationProp<StackNavigatorParamList>>()
   const { fileName, fileData, filePath } = route.params
 

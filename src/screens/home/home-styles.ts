@@ -3,12 +3,12 @@ import { StyleSheet, TextStyle, ViewStyle } from 'react-native'
 import { Spacing } from '@theme'
 
 interface IStyles {
-  container: ViewStyle
-  subContainer: ViewStyle
   button: ViewStyle
-  label: TextStyle
-  text: TextStyle
+  container: ViewStyle
   directoryPath: TextStyle
+  label: TextStyle
+  subContainer: ViewStyle
+  text: TextStyle
 }
 
 export const styles: IStyles = StyleSheet.create({
