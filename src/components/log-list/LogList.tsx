@@ -7,6 +7,7 @@ import { LOG_DIRECTORY_PATH } from '@constants'
 import { ILogFileData } from '@types'
 import { deleteFiles } from '@utils'
 
+import { configureFileLogger } from '../../../fileLogger'
 import LogCard from '../log-card/LogCard'
 
 import { styles } from './logList-styles'
@@ -16,21 +17,22 @@ const LogList = () => {
 
   const getLogFileData = async () => {
     try {
+      if (logFileData.length == 0) {
+        await configureFileLogger()
+      }
       const newLogFileData: ILogFileData[] = []
       const files = await RNFS.readDir(LOG_DIRECTORY_PATH)
-
       await Promise.all(
         files.map(async file => {
           const data = await RNFS.readFile(file.path)
           const logData = {
+            fileData: data,
             fileName: file.name,
             filePath: file.path,
-            fileData: data,
           }
           newLogFileData.push(logData)
         }),
       )
-
       setLogFileData(newLogFileData)
     } catch (error) {
       FileLogger.error(`Error in fetching log file data ${JSON.stringify(error)}`)
