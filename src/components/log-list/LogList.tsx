@@ -17,7 +17,7 @@ const LogList = () => {
 
   const getLogFileData = async () => {
     try {
-      if (logFileData.length == 0) {
+      if (logFileData.length === 0) {
         await configureFileLogger()
       }
       const newLogFileData: ILogFileData[] = []

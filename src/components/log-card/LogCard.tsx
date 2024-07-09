@@ -29,7 +29,7 @@ const LogCard = (props: ILogCardProps) => {
       FileLogger.error(`Error in sharing file : ${error}`)
     })
   }
-  
+
   const handleNavigation = () => {
     navigation.navigate(Screens.LogDetails, {
       fileName,

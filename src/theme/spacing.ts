@@ -8,5 +8,5 @@ export enum Spacing {
   space_24 = 24,
   space_32 = 32,
   space_64 = 64,
-  space_100 = 64,
+  space_100 = 100,
 }
