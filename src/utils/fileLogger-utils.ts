@@ -2,6 +2,8 @@ import { FileLogger } from 'react-native-file-logger'
 import RNFS from 'react-native-fs'
 import Share from 'react-native-share'
 
+import { LOG_DIRECTORY_PATH, LOG_FILE_MAX_SIZE, MAX_LOG_FILES } from '@constants'
+
 export const shareFiles = async (...filePaths: string[]) => {
   try {
     const fileExistencePromises = filePaths.map(filePath => RNFS.exists(filePath))
@@ -14,11 +16,11 @@ export const shareFiles = async (...filePaths: string[]) => {
     }
 
     const shareOptions = {
-      urls: filePaths.map(filePath => `file://${filePath}`),
-      failOnCancel: false,
       email: 'dummy@gmail.com',
-      subject: 'Sample subject',
+      failOnCancel: false,
       message: 'Sample message',
+      subject: 'Sample subject',
+      urls: filePaths.map(filePath => `file://${filePath}`),
     }
 
     await Share.open(shareOptions)
@@ -49,5 +51,18 @@ export const deleteFiles = async (...filePaths: string[]) => {
     return {
       success: false,
     }
+  }
+}
+
+export const configureFileLogger = async () => {
+  try {
+    await FileLogger.configure({
+      logsDirectory: LOG_DIRECTORY_PATH,
+      maximumFileSize: LOG_FILE_MAX_SIZE,
+      maximumNumberOfFiles: MAX_LOG_FILES,
+    })
+    FileLogger.info(`FileLogger configured successfully`)
+  } catch (error) {
+    console.error(`FileLogger configure error : ${JSON.stringify(error)}`)
   }
 }

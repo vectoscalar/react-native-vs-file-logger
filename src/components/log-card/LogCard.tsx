@@ -14,9 +14,13 @@ import { shareFiles } from '@utils'
 import { styles } from './logCard-styles'
 
 interface ILogCardProps {
+  /** fileData: is a required prop which states the data for log file. */
   fileData: string
+  /** fileName: is a required prop which states the name for log file. */
   fileName: string
+  /** fileName: is a required prop which states the path for log file. */
   filePath: string
+  /** handleFileDelete: is a required prop which states function to handle the deletion log files. */
   handleFileDelete: (filePath: string) => () => void
 }
 

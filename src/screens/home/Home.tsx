@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
-import { ActivityIndicator, Text, TouchableOpacity, View } from 'react-native'
+import { Text, TouchableOpacity, View } from 'react-native'
 import { FileLogger } from 'react-native-file-logger'
 
 import { LogList } from '@components'
 import { API_END_POINT } from '@constants'
 import { IProductData } from '@types'
+
+import Loader from '../../components/loader/Loader'
 
 import { styles } from './home-styles'
 
@@ -12,8 +14,9 @@ const Home = () => {
   const [loading, setLoading] = useState(false)
   const [productData, setProductData] = useState<IProductData[]>([])
 
-  // FileLogger.warn('Sample warning')
-  // FileLogger.debug('Sample debug log')
+  FileLogger.warn('Sample warning log')
+  FileLogger.debug('Sample debug log')
+  console.log('sample console log')
 
   const getProductData = async () => {
     try {
@@ -29,10 +32,9 @@ const Home = () => {
 
   const fetchProductData = () => {
     setLoading(true)
-
     const intervalId = setInterval(() => {
       getProductData().catch(error => FileLogger.error(`Error in fetching Product Data: ${error}`))
-    }, 500)
+    }, 1000)
 
     setTimeout(() => {
       clearInterval(intervalId)
@@ -43,10 +45,7 @@ const Home = () => {
   return (
     <View style={styles.container}>
       {loading ? (
-        <>
-          <Text style={styles.text}>Fetching Products Data ....</Text>
-          <ActivityIndicator size="large" />
-        </>
+        <Loader message="Fetching data..." />
       ) : (
         <>
           <TouchableOpacity onPress={fetchProductData} style={styles.button} disabled={loading}>
