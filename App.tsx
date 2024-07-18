@@ -3,10 +3,9 @@ import { SafeAreaView } from 'react-native'
 
 import { NavigationContainer } from '@react-navigation/native'
 
-import { Loader } from '@components'
-import { useConfigure } from '@hooks'
-
 import { styles } from './app-styles'
+import { Loader } from './src/components'
+import { useConfigure } from './src/hooks'
 import { StackNavigator } from './src/navigator'
 
 const App = () => {

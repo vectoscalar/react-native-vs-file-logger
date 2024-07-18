@@ -2,11 +2,9 @@ import React, { useState } from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
 import { FileLogger } from 'react-native-file-logger'
 
-import { LogList } from '@components'
-import { API_END_POINT } from '@constants'
-import { IProductData } from '@types'
-
-import Loader from '../../components/loader/Loader'
+import { Loader, LogList } from '../../components'
+import { API_END_POINT } from '../../constants'
+import { IProductData } from '../../types'
 
 import { styles } from './home-styles'
 

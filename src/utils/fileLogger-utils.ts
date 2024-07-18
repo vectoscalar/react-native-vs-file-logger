@@ -2,9 +2,9 @@ import { FileLogger } from 'react-native-file-logger'
 import RNFS from 'react-native-fs'
 import Share from 'react-native-share'
 
-import { LOG_DIRECTORY_PATH, LOG_FILE_MAX_SIZE, MAX_LOG_FILES } from '@constants'
+import { LOG_DIRECTORY_PATH, LOG_FILE_MAX_SIZE, MAX_LOG_FILES } from '../constants'
 
-export const shareFiles = async (...filePaths: string[]) => {
+export const shareFiles = (filePaths: string[]) => async () => {
   try {
     const fileExistencePromises = filePaths.map(filePath => RNFS.exists(filePath))
 
@@ -29,7 +29,7 @@ export const shareFiles = async (...filePaths: string[]) => {
   }
 }
 
-export const deleteFiles = async (...filePaths: string[]) => {
+export const deleteFiles = async (filePaths: string[]) => {
   try {
     const deletePromises = filePaths.map(async filePath => {
       const fileExists = await RNFS.exists(filePath)

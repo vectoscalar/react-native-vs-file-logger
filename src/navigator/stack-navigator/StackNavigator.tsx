@@ -2,9 +2,9 @@ import React from 'react'
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
-import { Screens } from '@constants'
-import { Home, LogDetails } from '@screens'
-import { StackNavigatorParamList } from '@types'
+import { Screens } from '../../constants'
+import { Home, LogDetails } from '../../screens'
+import { StackNavigatorParamList } from '../../types'
 
 const Stack = createNativeStackNavigator<StackNavigatorParamList>()
 

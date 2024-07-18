@@ -1,6 +1,6 @@
 import { StyleSheet, ViewStyle } from 'react-native'
 
-import { AppColors, Spacing } from '@theme'
+import { AppColors, Spacing } from '../../theme'
 
 interface IStyles {
   container: ViewStyle

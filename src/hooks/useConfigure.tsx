@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
+import { FileLogger } from 'react-native-file-logger'
 
-import { configureFileLogger } from '@utils'
+import { configureFileLogger } from '../utils'
 
 const useConfigure = () => {
   const [isConfigured, setIsConfigured] = useState(false)
@@ -15,7 +16,7 @@ const useConfigure = () => {
   }
 
   useEffect(() => {
-    configureLogger()
+    configureLogger().catch(error => FileLogger.error(`FileLogger configure error ${error}`))
   }, [])
 
   return isConfigured

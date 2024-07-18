@@ -1,6 +1,6 @@
 import { StyleSheet, ViewStyle } from 'react-native'
 
-import { Spacing } from '@theme'
+import { Spacing } from './src/theme'
 
 interface IStyles {
   container: ViewStyle
