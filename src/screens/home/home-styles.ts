@@ -1,27 +1,20 @@
 import { StyleSheet, TextStyle, ViewStyle } from 'react-native'
 
-import { Spacing } from '@theme'
+import { AppColors, Spacing } from '../../theme'
 
 interface IStyles {
   button: ViewStyle
   container: ViewStyle
-  directoryPath: TextStyle
   label: TextStyle
-  subContainer: ViewStyle
-  text: TextStyle
 }
 
 export const styles: IStyles = StyleSheet.create({
   container: {
     flex: Spacing.space_1,
-    padding: Spacing.space_16,
-  },
-  subContainer: {
-    flex: Spacing.space_1,
-    justifyContent: 'center',
+    padding: Spacing.space_8,
   },
   button: {
-    backgroundColor: 'plum',
+    backgroundColor: AppColors.dark[100],
     borderRadius: Spacing.space_4,
     marginVertical: Spacing.space_16,
     paddingHorizontal: Spacing.space_8,
@@ -30,12 +23,6 @@ export const styles: IStyles = StyleSheet.create({
   label: {
     fontSize: Spacing.space_16,
     textAlign: 'center',
-  },
-  text: {
-    marginBottom: Spacing.space_8,
-    textAlign: 'center',
-  },
-  directoryPath: {
-    marginBottom: Spacing.space_16,
+    color: AppColors.light,
   },
 })

@@ -1,8 +1,14 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, TextStyle, ViewStyle } from 'react-native'
 
-import { AppColors, Spacing } from '@theme'
+import { AppColors, Spacing } from '../../theme'
 
-export const styles = StyleSheet.create({
+interface IStyles {
+  container: ViewStyle
+  subContainer: ViewStyle
+  text: TextStyle
+}
+
+export const styles: IStyles = StyleSheet.create({
   container: {
     ...StyleSheet.absoluteFillObject,
     alignItems: 'center',
@@ -10,7 +16,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     zIndex: Spacing.space_1000,
   },
-  loader: {
+  subContainer: {
     alignItems: 'center',
     borderRadius: Spacing.space_10,
     justifyContent: 'center',
