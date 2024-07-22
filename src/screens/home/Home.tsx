@@ -12,10 +12,6 @@ const Home = () => {
   const [loading, setLoading] = useState(false)
   const [productData, setProductData] = useState<IProductData[]>([])
 
-  FileLogger.warn('Sample warning log')
-  FileLogger.debug('Sample debug log')
-  console.log('sample console log')
-
   const getProductData = async () => {
     try {
       FileLogger.info('API call pending...')

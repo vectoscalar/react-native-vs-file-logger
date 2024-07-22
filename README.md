@@ -27,32 +27,39 @@ npm i react-native-vs-file-logger
 
 ### Configuring logger
 
-- Just import and call useConfigure() Hook.
-- useConfigure() will return you a boolean value which states whether the logger is configured or not, while the value is false you can show a loader.
+#### useConfigure(options)
+
+| Option               | Type                                           | Default value                     | Description                                                                                                                                 |
+| -------------------- | ---------------------------------------------- | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| captureConsole       | boolean                                        | true                              | If true, console calls are automatically captured and written to a log file.                                                                |
+| dailyRolling         | boolean                                        | true                              | If true, a new log file is created every day                                                                                                |
+| formatter            | (level : LogLevel, message : string) => string | {date}--${time}--[level]: message | If true, all console calls are automatically captured and written to a log file.                                                            |
+| logLevel             | LogLevel                                       | LogLevel.Debug                    | It states minimum log level for file output (it won't affect console output)                                                                |
+| logsDirectory        | string                                         | undefined                         | It states the absolute path of directory where log files are stored. If not defined, log files are stored in the cache directory of the app |
+| maximumFileSize      | number                                         | 1024 \* 1024 (1 MB)               | It states the maximum size of log files.                                                                                                    |
+| maximumNumberOfFiles | number                                         | 3                                 | It states the maximum number of log files. If the total number of files exceeds this limit, the oldest file is deleted                      |
+
+- Just import and call useConfigure() Hook with required configure options.
+- useConfigure() will return a boolean value which states whether the logger is configured or not
+- Wrap your component by ConfigProvider and pass same options to it as props
 
 ```jsx
-import React from 'react'
 import { SafeAreaView } from 'react-native'
-import { useConfigure } from 'react-native-vs-file-logger'
-
-import { NavigationContainer } from '@react-navigation/native'
-
-import { styles } from './app-styles'
-import { Loader } from './src/components'
-import { StackNavigator } from './src/navigator'
+import { ConfigProvider, useConfigure } from 'react-native-vs-file-logger'
 
 const App = () => {
-  const isConfigured = useConfigure()
+  const options = {
+    dailyRolling: false,
+    maximumFileSize: 2 * 1024 * 1024, // 1 MB,
+    maximumNumberOfFiles: 10,
+  }
+
+  const isConfigured = useConfigure(options)
+
   return (
-    <SafeAreaView style={styles.container}>
-      {isConfigured ? (
-        <NavigationContainer>
-          <StackNavigator />
-        </NavigationContainer>
-      ) : (
-        <Loader message="Configuring Logger..." />
-      )}
-    </SafeAreaView>
+    <ConfigProvider options={options}>
+      <SafeAreaView>{isConfigured && <Home />}</SafeAreaView>
+    </ConfigProvider>
   )
 }
 
@@ -63,7 +70,7 @@ export default App
 
 - Use console API such as console.log , console.error, console.warn etc which are automatically captured and stored in log files.
 
-- As we have installed react-native-file-logger package we can also use its API's also ,such as
+- In addition to console API's, below defined FileLogger API's can also be used.
 
   #### FileLogger.debug(msg)
 
@@ -80,9 +87,7 @@ Read more about it here - <a href="https://www.npmjs.com/package/react-native-fi
 ### Example -
 
 ```jsx
-import React, { useState } from 'react'
-import { FileLogger } from 'react-native-file-logger'
-import { LogList } from 'react-native-vs-file-logger'
+import { FileLogger, LogList } from 'react-native-vs-file-logger'
 
 const Home = () => {
   console.log('Sample log using console API')
@@ -97,55 +102,9 @@ export default Home
 
 ### Render logs files and view its content
 
-- Import LogDetails screen from package add to stack navigator with screen name = 'LogDetails'
-
-```jsx
-import { LogDetails } from 'react-native-vs-file-logger'
-
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
-
-import { Home } from '../../screens'
-
-type StackNavigatorParamList = {
-  Home: undefined
-  LogDetails: {
-    fileName: string
-    fileData: string
-    filePath: string
-  }
-}
-
-const Stack = createNativeStackNavigator<StackNavigatorParamList>()
-
-const StackNavigator = () => {
-  return (
-    <Stack.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}
-      initialRouteName='Home'>
-      <Stack.Screen
-        name='Home'
-        component={Home}
-        options= {{ gestureDirection: 'horizontal' }}
-      />
-      <Stack.Screen
-        name='LogDetails'
-        component={LogDetails}
-        options= {{ gestureDirection: 'horizontal' }}
-      />
-    </Stack.Navigator>
-  )
-}
-
-export default StackNavigator
-
-```
-
 - Just import and use LogList component anywhere in your project to render all logs on UI.
 
 ```jsx
-import React, { useState } from 'react'
 import { LogList } from 'react-native-vs-file-logger'
 
 const Home = () => {
