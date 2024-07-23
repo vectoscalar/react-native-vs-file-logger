@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 
 import { styles } from './app-styles'
-import { ConfigProvider } from './src/context/ConfigContext'
+import { ConfigProvider } from './src/context'
 import { StackNavigator } from './src/navigator'
 
 const App = () => {
