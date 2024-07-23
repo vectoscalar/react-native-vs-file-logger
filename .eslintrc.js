@@ -59,6 +59,7 @@ module.exports = {
     'unicorn/no-array-for-each': 'off',
     'react/jsx-props-no-spreading': 'off',
     'unicorn/no-null': 'off',
+    'react/require-default-props': 'off',
   },
   overrides: [
     {
