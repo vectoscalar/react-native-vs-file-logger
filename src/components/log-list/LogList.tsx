@@ -19,10 +19,10 @@ const LogList = () => {
   const [logFileData, setLogFileData] = useState<ILogFileData[]>([])
   const [areLogsFetched, setAreLogsFetched] = useState(true)
   const [isConfigured, setIsConfigured] = useState(true)
-  const [selectedFilePaths, setSelectedFilePaths] = useState<string[]>([])
   const [logDataIndex, setLogDataIndex] = useState(-1)
   const configureOptions = useContext(ConfigContext)
-  const [isSelectMode, setIsSelectMode] = useState(false)
+  // const [selectedFilePaths, setSelectedFilePaths] = useState<string[]>([])
+  // const [isSelectMode, setIsSelectMode] = useState(false)
 
   const getLogFileData = async () => {
     try {
@@ -111,10 +111,10 @@ const LogList = () => {
               filePath={item.filePath}
               handleFileDelete={handleFileDelete}
               index={index}
-              isSelectMode={isSelectMode}
-              selectedFilePaths={selectedFilePaths}
+              // isSelectMode={isSelectMode}
+              // selectedFilePaths={selectedFilePaths}
               setLogDataIndex={setLogDataIndex}
-              setSelectedFilePaths={setSelectedFilePaths}
+              // setSelectedFilePaths={setSelectedFilePaths}
             />
           )}
           showsVerticalScrollIndicator={false}

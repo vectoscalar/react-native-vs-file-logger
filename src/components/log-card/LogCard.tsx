@@ -17,14 +17,14 @@ interface ILogCardProps {
   handleFileDelete: (filePath: string[]) => () => void
   /** index is a required prop which states the index of log data. */
   index: number
-  /** isSelectMode is a required prop which states whether select mode is on or not. */
-  isSelectMode: boolean
+  /** isSelectMode is an optional prop which states whether select mode is on or not. */
+  isSelectMode?: boolean
   /** selectedFilePaths is a required prop which specifies the path of files which are selected. */
-  selectedFilePaths: string[]
+  // selectedFilePaths: string[]
   /** setLogDataIndex is a required function prop which sets the log data index. */
   setLogDataIndex: React.Dispatch<React.SetStateAction<number>>
   /** setSelectedFilePaths is a required prop which is function to update the list of selected file paths. */
-  setSelectedFilePaths: Dispatch<SetStateAction<string[]>>
+  // setSelectedFilePaths: Dispatch<SetStateAction<string[]>>
 }
 
 const LogCard = (props: ILogCardProps) => {
@@ -33,45 +33,45 @@ const LogCard = (props: ILogCardProps) => {
     filePath,
     handleFileDelete,
     index,
-    isSelectMode,
-    selectedFilePaths,
+    isSelectMode = false,
     setLogDataIndex,
-    setSelectedFilePaths,
+    // selectedFilePaths,
+    // setSelectedFilePaths,
   } = props
 
-  const isCheckboxChecked = selectedFilePaths.includes(filePath)
+  // const isCheckboxChecked = selectedFilePaths.includes(filePath)
 
   const handleLogCardPress = () => {
     setLogDataIndex(index)
   }
 
-  const handleFileSelect = (selectedFilePath: string) => () => {
-    const isFileSelected = selectedFilePaths.includes(selectedFilePath)
-    if (isFileSelected) {
-      setSelectedFilePaths(prev => prev.filter(path => path !== selectedFilePath))
-    } else {
-      setSelectedFilePaths(prev => [...prev, selectedFilePath])
-    }
-  }
+  // const handleFileSelect = (selectedFilePath: string) => () => {
+  //   const isFileSelected = selectedFilePaths.includes(selectedFilePath)
+  //   if (isFileSelected) {
+  //     setSelectedFilePaths(prev => prev.filter(path => path !== selectedFilePath))
+  //   } else {
+  //     setSelectedFilePaths(prev => [...prev, selectedFilePath])
+  //   }
+  // }
 
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.leftSubContainer} onPress={handleLogCardPress}>
-        {isSelectMode && (
+        {/* {isSelectMode && (
           <Checkbox isChecked={isCheckboxChecked} onPress={handleFileSelect(filePath)} />
-        )}
+        )} */}
         <Text>{fileName}</Text>
       </TouchableOpacity>
-      {!isSelectMode && (
-        <View style={styles.rightSubContainer}>
-          <TouchableOpacity onPress={handleFileDelete([filePath])} disabled={isSelectMode}>
-            <Icon name="delete" size={Spacing.space_24} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={shareFiles([filePath])} disabled={isSelectMode}>
-            <Icon name="share" size={Spacing.space_24} />
-          </TouchableOpacity>
-        </View>
-      )}
+      {/* {!isSelectMode && ( */}
+      <View style={styles.rightSubContainer}>
+        <TouchableOpacity onPress={handleFileDelete([filePath])} disabled={isSelectMode}>
+          <Icon name="delete" size={Spacing.space_24} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={shareFiles([filePath])} disabled={isSelectMode}>
+          <Icon name="share" size={Spacing.space_24} />
+        </TouchableOpacity>
+      </View>
+      {/* )} */}
     </View>
   )
 }
