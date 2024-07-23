@@ -29,7 +29,6 @@ npm i react-native-vs-file-logger
 
 - Wrap your component by ConfigProvider and pass configure options to it as props
 
-
 #### Configure options
 
 | Option               | Type                                           | Default value                     | Description                                                                                                                                 |
@@ -44,7 +43,7 @@ npm i react-native-vs-file-logger
 
 ```jsx
 import { SafeAreaView } from 'react-native'
-import { ConfigProvider, useConfigure } from 'react-native-vs-file-logger'
+import { ConfigProvider } from 'react-native-vs-file-logger'
 
 const App = () => {
   const options = {
@@ -55,7 +54,9 @@ const App = () => {
 
   return (
     <ConfigProvider options={options}>
-      <SafeAreaView>{isConfigured && <Home />}</SafeAreaView>
+      <SafeAreaView>
+        <Home />
+      </SafeAreaView>
     </ConfigProvider>
   )
 }
