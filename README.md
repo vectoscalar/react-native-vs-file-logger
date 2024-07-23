@@ -27,7 +27,10 @@ npm i react-native-vs-file-logger
 
 ### Configuring logger
 
-#### useConfigure(options)
+- Wrap your component by ConfigProvider and pass configure options to it as props
+
+
+#### Configure options
 
 | Option               | Type                                           | Default value                     | Description                                                                                                                                 |
 | -------------------- | ---------------------------------------------- | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -39,10 +42,6 @@ npm i react-native-vs-file-logger
 | maximumFileSize      | number                                         | 1024 \* 1024 (1 MB)               | It states the maximum size of log files.                                                                                                    |
 | maximumNumberOfFiles | number                                         | 3                                 | It states the maximum number of log files. If the total number of files exceeds this limit, the oldest file is deleted                      |
 
-- Just import and call useConfigure() Hook with required configure options.
-- useConfigure() will return a boolean value which states whether the logger is configured or not
-- Wrap your component by ConfigProvider and pass same options to it as props
-
 ```jsx
 import { SafeAreaView } from 'react-native'
 import { ConfigProvider, useConfigure } from 'react-native-vs-file-logger'
@@ -53,8 +52,6 @@ const App = () => {
     maximumFileSize: 2 * 1024 * 1024, // 1 MB,
     maximumNumberOfFiles: 10,
   }
-
-  const isConfigured = useConfigure(options)
 
   return (
     <ConfigProvider options={options}>

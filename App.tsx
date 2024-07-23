@@ -5,22 +5,21 @@ import { NavigationContainer } from '@react-navigation/native'
 
 import { styles } from './app-styles'
 import { ConfigProvider } from './src/context/ConfigContext'
-import { useConfigure } from './src/hooks'
 import { StackNavigator } from './src/navigator'
 
 const App = () => {
-  const options = {}
-
-  const isConfigured = useConfigure(options)
+  const options = {
+    maximumNumberOfFiles: 3,
+    maximumFileSize: 1024 * 1024,
+    captureConsole: true,
+  }
 
   return (
     <ConfigProvider options={options}>
       <SafeAreaView style={styles.container}>
-        {isConfigured && (
-          <NavigationContainer>
-            <StackNavigator />
-          </NavigationContainer>
-        )}
+        <NavigationContainer>
+          <StackNavigator />
+        </NavigationContainer>
       </SafeAreaView>
     </ConfigProvider>
   )
