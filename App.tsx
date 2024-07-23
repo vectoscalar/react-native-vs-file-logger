@@ -1,13 +1,27 @@
 import React from 'react'
-import { SafeAreaView, Text } from 'react-native'
-import Icon from 'react-native-vector-icons/MaterialIcons'
+import { SafeAreaView } from 'react-native'
+
+import { NavigationContainer } from '@react-navigation/native'
+
+import { styles } from './app-styles'
+import { ConfigProvider } from './src/context/ConfigContext'
+import { StackNavigator } from './src/navigator'
 
 const App = () => {
+  const options = {
+    maximumNumberOfFiles: 3,
+    maximumFileSize: 1024 * 1024,
+    captureConsole: true,
+  }
+
   return (
-    <SafeAreaView>
-      <Text>App</Text>
-      <Icon name="arrow-back" size={50} />
-    </SafeAreaView>
+    <ConfigProvider options={options}>
+      <SafeAreaView style={styles.container}>
+        <NavigationContainer>
+          <StackNavigator />
+        </NavigationContainer>
+      </SafeAreaView>
+    </ConfigProvider>
   )
 }
 
