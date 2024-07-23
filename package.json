@@ -1,6 +1,6 @@
 {
   "name": "react-native-vs-file-logger",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
